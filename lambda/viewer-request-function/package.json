@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "querystring": "^0.2.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "lodash": "^4.17.15",
+    "lodash.clonedeep": "^4.5.0",
+    "mocha": "*"
   }
 }
