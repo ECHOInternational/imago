@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 // Transforms the request reading any arguments sent, placing restrictions on those
