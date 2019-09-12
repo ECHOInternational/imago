@@ -112,10 +112,9 @@ struct _GApplicationClass
                                                      const gchar               *object_path);
   gint                      (* handle_local_options)(GApplication              *application,
                                                      GVariantDict              *options);
-  gboolean                  (* name_lost)           (GApplication              *application);
 
   /*< private >*/
-  gpointer padding[7];
+  gpointer padding[8];
 };
 
 GLIB_AVAILABLE_IN_ALL

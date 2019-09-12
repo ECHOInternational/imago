@@ -1,7 +1,6 @@
 {
   "name": "build",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -10,17 +9,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.526.0",
-    "http": "0.0.0",
-    "https": "^1.0.0",
     "querystring": "^0.2.0",
     "sharp": "^0.23.0"
   },
   "devDependencies": {
+    "aws-sdk": "^2.526.0",
+    "http": "0.0.0",
+    "https": "^1.0.0",
     "aws-sdk-mock": "^4.5.0",
     "chai": "^4.2.0",
     "lodash": "^4.17.15",
     "lodash.clonedeep": "^4.5.0",
     "mocha": "^6.2.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }

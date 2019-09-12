@@ -10,7 +10,7 @@ const AWS = require('aws-sdk');
 const Sharp = require('sharp');
 
 // set the S3 and API GW endpoints
-const BUCKET = 'image-resize-test-382724554857-us-east-1';
+const BUCKET = 'images-us-east-1.echocommunity.org';
 
 exports.handler = (event, context, callback) => {
 
