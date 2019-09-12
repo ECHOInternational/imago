@@ -90,7 +90,31 @@ Lambda @edge image resizing based on the demo from AWS
 
 If the client passes an Accept header that indicates that webp is an acceptable format (Chrome and Android do) a webp image is created instead of a jpeg when jpeg is requested.
 
-### Created
+### What is created?
+
+S3 keys are constructed following this pattern
+
+/prefix/transform/widthxheight/quality/filetype/filename.extension
+
+#### Examples:
+
+12345/myimage.jpg?w=400 yeilds\
+/12345/w/400/m/jpg/myimage.jpg\
+_note that the default value of medium quality is used_
+
+12345/myimage.jpg?h=400 yeilds\
+/12345/h/400/m/jpg/myimage.jpg
+
+12345/myimage.jpg?w=100&h=100 yeilds\
+/12345/c/100x100/m/jpg/myimage.jpg\
+_note that the default values of crop and medium quality are used_
+
+12345/myimage.jpg?w=600&h=400&t=f yeilds\
+/12345/f/600x400/m/jpg/myimage.jpg
+
+12345/myimage.jpg?w=1200&q=h yeilds\
+/12345/w/1200/h/jpg/myimage.jpg
+
 
 -------
 
