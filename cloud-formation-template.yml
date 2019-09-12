@@ -54,7 +54,7 @@ Resources:
   ViewerRequestFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://serverless.echocommunity.org/viewer-request-function.zip
+      CodeUri: s3://<code-bucket>/viewer-request-function.zip
       Handler: index.handler
       Runtime: nodejs8.10
       MemorySize: 128
@@ -70,7 +70,7 @@ Resources:
   OriginResponseFunction:
    Type: AWS::Serverless::Function
    Properties:
-     CodeUri: s3://serverless.echocommunity.org/origin-response-function.zip
+     CodeUri: s3://<codebucket>/origin-response-function.zip
      Handler: index.handler
      Runtime: nodejs8.10
      MemorySize: 512
@@ -104,7 +104,16 @@ Resources:
           ForwardedValues:
             QueryString: 'true'
             QueryStringCacheKeys:
-              - d
+              - o
+              - original
+              - w
+              - width
+              - h
+              - height
+              - q
+              - quality
+              - t
+              - transform
             Cookies:
               Forward: 'none'
           ViewerProtocolPolicy: allow-all

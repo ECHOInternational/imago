@@ -154,6 +154,8 @@ describe('Handler Function', function(){
 			});
 		});
 		describe('When valid parameters are sent', function(){
+
+      // Loads an image from the local directory instead of calling S3
 			AWS.mock("S3", "getObject", function(params, callback){
 				callback(null, {
 					Body: Buffer.from(require("fs").readFileSync("./test/test.jpg")),
@@ -164,10 +166,15 @@ describe('Handler Function', function(){
 					StorageClass: 'STANDARD'
 				});
 			});
-			// AWS.mock("S3", "putObject", function(params, callback){
-			// 	console.log(params);
-			// 	callback(null, "uploaded?");
-			// });
+      
+      // Does not create any images.
+      // To actually create images during testing comment out this mock section
+			AWS.mock("S3", "putObject", function(params, callback){
+				console.log(params);
+				callback(null, "uploaded.");
+			});
+      //
+
 			it('should return a 200 success code', function(done){
 				event_image_not_exist_width_400 = clonedeep(base_event);
 				event_image_not_exist_width_400.Records[0].cf.response.status = 404;
