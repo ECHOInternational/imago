@@ -178,7 +178,7 @@ describe('Handler Function', function(){
 			it('should return a 200 success code', function(done){
 				event_image_not_exist_width_400 = clonedeep(base_event);
 				event_image_not_exist_width_400.Records[0].cf.response.status = 404;
-				event_image_not_exist_width_400.Records[0].cf.request.uri = "0c6e182f-2798-4b6b-85f3-8b2119bade60/w/400/m/jpg/picture.jpg";
+				event_image_not_exist_width_400.Records[0].cf.request.uri = "0c6e182f-2798-4b6b-85f3-8b2119bade60/w/400/m/jpg/picture%20of%20me.jpg";
 				lambda.handler(event_image_not_exist_width_400, null, function(err, res){
 					expect(res).to.be.an('object');
 					expect(res).to.have.property('status');

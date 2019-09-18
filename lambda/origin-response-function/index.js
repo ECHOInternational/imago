@@ -51,6 +51,8 @@ exports.handler = (event, context, callback) => {
     // this removes the first character.
     let key = path.substring(1);
 
+    key = decodeURIComponent(key);
+
     // parse the prefix, width, height and image name
     // Ex: key=images/200x200/webp/image.jpg
     let prefix, func, fit, quality, originalKey, match, width, height, requiredFormat, imageName;
@@ -156,6 +158,11 @@ exports.handler = (event, context, callback) => {
       })
     .catch( err => {
       console.log("Exception while reading source image :%j",err);
+      console.log("Key Passed: %j",originalKey);
+      response.status = 404;
+      response.statusDescription = 'Not Found';
+      response.body = 'The file requested does not exist.';
+      callback(null, response);
     });
   } // end of if block checking response statusCode
   else {
