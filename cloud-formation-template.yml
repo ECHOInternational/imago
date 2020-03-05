@@ -12,6 +12,7 @@ Resources:
 
   ImageBucketPolicy:
     Type: AWS::S3::BucketPolicy
+    DeletionPolicy: Delete
     Properties:
       Bucket: !Ref ImageBucket
       PolicyDocument:
@@ -36,6 +37,7 @@ Resources:
 
   EdgeLambdaRole:
     Type: "AWS::IAM::Role"
+    DeletionPolicy: Delete
     Properties:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
@@ -53,38 +55,43 @@ Resources:
 
   ViewerRequestFunction:
     Type: AWS::Serverless::Function
+    DeletionPolicy: Delete
     Properties:
-      CodeUri: s3://serverless.echocommunity.org/viewer-request-function.zip
+      CodeUri: s3://serverless.echocommunity.org/viewer-request-function-12.zip
       Handler: index.handler
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       MemorySize: 128
       Timeout: 1
       Role: !GetAtt EdgeLambdaRole.Arn
 
   ViewerRequestFunctionVersion:
     Type: "AWS::Lambda::Version"
+    DeletionPolicy: Delete
     Properties:
       FunctionName: !Ref ViewerRequestFunction
       Description: "A version of ViewerRequestFunction"
 
   OriginResponseFunction:
    Type: AWS::Serverless::Function
+   DeletionPolicy: Delete
    Properties:
-     CodeUri: s3://serverless.echocommunity.org/origin-response-function.zip
+     CodeUri: s3://serverless.echocommunity.org/origin-response-function-12.zip
      Handler: index.handler
-     Runtime: nodejs8.10
+     Runtime: nodejs12.x
      MemorySize: 512
      Timeout: 5
      Role: !GetAtt EdgeLambdaRole.Arn
 
   OriginResponseFunctionVersion:
     Type: "AWS::Lambda::Version"
+    DeletionPolicy: Delete
     Properties:
       FunctionName: !Ref OriginResponseFunction
       Description: "A version of OriginResponseFunction"
 
   MyDistribution:
     Type: AWS::CloudFront::Distribution
+    DeletionPolicy: Delete
     Properties:
       DistributionConfig:
         Origins:

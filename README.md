@@ -10,7 +10,7 @@ Lambda @edge image resizing based on the demo from AWS
     ```
     _Note the . (dot) at the end, it is easily missed and is required to specify the current directory._
 
-    The Dockerfile is configured to download Amazon Linux and install Node.js 8.10 along with dependencies.
+    The Dockerfile is configured to download Amazon Linux and install Node.js 12.x along with dependencies.
 
 2) Set the bucket and cloudfront distribution names in the appropriate files:
     + imago/lambda/origin-response-function/index.js
@@ -126,7 +126,7 @@ https://sharp.pixelplumbing.com
 
 ## Testing
 
-1) Ensure you have Node 8.10 installed
+1) Ensure you have Node 12.x installed
 2) Clone the repository
 3) Test the viewer request function
     go to the `imago/lambda/viewer-request-function` folder

@@ -167,7 +167,11 @@ exports.handler = (event, context, callback) => {
         url.push(variables.webpExtension);
     }
     else{
-        url.push(extension);
+        let format = extension.toLowerCase();
+        if(format ==  "jpg"){
+            format = "jpeg";
+        }
+        url.push(format);
     }
     url.push(imageName+"."+extension);
 
