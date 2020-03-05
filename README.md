@@ -43,13 +43,13 @@ Lambda @edge image resizing based on the demo from AWS
 5) Package the ‘Origin-Response’ function.
 
     ```BASH
-    mkdir -p dist && cd lambda/origin-response-function && zip -FS -q -r ../../dist/origin-response-function.zip * -x test/\* && cd ../..
+    mkdir -p dist && cd lambda/origin-response-function && zip -FS -q -r ../../dist/origin-response-function-12.zip * -x test/\* && cd ../..
     ```
 
 6) Package the ‘Viewer-Request’ function.
     
     ```BASH
-    mkdir -p dist && cd lambda/viewer-request-function && zip -FS -q -r ../../dist/viewer-request-function.zip * -x test/\* && cd ../..
+    mkdir -p dist && cd lambda/viewer-request-function && zip -FS -q -r ../../dist/viewer-request-function-12.zip * -x test/\* && cd ../..
     ```
 
 7) Choose a bucket in the __us-east-1__ region to hold the deployment files and upload the zip files created in above steps. If you don't already have an appropriate bucket in that region you can create one using the AWS console or command line tools. These files will be referenced from the CloudFormation template during the next step.
