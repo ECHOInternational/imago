@@ -1,3 +1,2 @@
-#distribution
 dist
-
+lambda/*/node_modules/

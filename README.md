@@ -31,13 +31,13 @@ Lambda @edge image resizing based on the demo from AWS
 3) Install the sharp and querystring module dependencies and compile the ‘Origin-Response’ function.
 
     ```BASH
-    docker run --rm --volume ${PWD}/lambda/origin-response-function:/build amazonlinux:nodejs /bin/bash -c "source ~/.bashrc; npm init -f -y; npm install sharp --save; npm install querystring --save; npm install --only=prod"
+    docker run --rm --volume ${PWD}/lambda/origin-response-function:/build amazonlinux:nodejs /bin/bash -c "source ~/.bashrc; npm init -f -y; npm install sharp --save --only=prod; npm install querystring --save --only=prod; npm install --only=prod"
     ```
 
 4) Install the querystring module dependencies and compile the ‘Viewer-Request’ function.
 
     ```BASH
-    docker run --rm --volume ${PWD}/lambda/viewer-request-function:/build amazonlinux:nodejs /bin/bash -c "source ~/.bashrc; npm init -f -y; npm install querystring --save; npm install --only=prod"
+    docker run --rm --volume ${PWD}/lambda/viewer-request-function:/build amazonlinux:nodejs /bin/bash -c "source ~/.bashrc; npm init -f -y; npm install querystring --save --only=prod; npm install --only=prod"
     ```
 
 5) Package the ‘Origin-Response’ function.
