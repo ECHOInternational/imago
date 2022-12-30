@@ -20,7 +20,7 @@
     "chai": "^4.2.0",
     "lodash": "^4.17.15",
     "lodash.clonedeep": "^4.5.0",
-    "mocha": "^6.2.0"
+    "mocha": "^10.2.0"
   },
   "directories": {
     "test": "test"
