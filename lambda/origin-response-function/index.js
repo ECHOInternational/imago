@@ -5,18 +5,15 @@ const http = require('http');
 const https = require('https');
 const querystring = require('querystring');
 
-const AWS = require('aws-sdk');
+const { S3Client, GetObjectCommand, PutObjectCommand } = require('@aws-sdk/client-s3');
 
 const Sharp = require('sharp');
 
 // set the S3 and API GW endpoints
 const BUCKET = 'images-us-east-1.echocommunity.org';
+const s3 = new S3Client({});
 
 exports.handler = (event, context, callback) => {
-
-  const S3 = new AWS.S3({
-    signatureVersion: 'v4',
-  });
 
   let response = event.Records[0].cf.response;
   // console.log(event.Records[0].cf);
@@ -124,9 +121,10 @@ exports.handler = (event, context, callback) => {
     }
 
     // get the source image file
-    S3.getObject({ Bucket: BUCKET, Key: originalKey }).promise()
-      // perform the resize operation
-      .then(data => Sharp(data.Body)
+    s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: originalKey }))
+      // v3 returns the body as a stream; collect it before handing to Sharp
+      .then(data => data.Body.transformToByteArray())
+      .then(bytes => Sharp(Buffer.from(bytes))
         .resize({
           width: width,
           height: height,
@@ -137,14 +135,14 @@ exports.handler = (event, context, callback) => {
       )
       .then(buffer => {
         // save the resized object to S3 bucket with appropriate object key.
-        S3.putObject({
+        s3.send(new PutObjectCommand({
             Body: buffer,
             Bucket: BUCKET,
             ContentType: 'image/' + requiredFormat,
             CacheControl: 'max-age=31536000',
             Key: key,
             StorageClass: 'STANDARD'
-        }).promise()
+        }))
         // even if there is exception in saving the object we send back the generated
         // image back to viewer below
         .catch(() => { console.log("Exception while writing resized image to bucket")});
