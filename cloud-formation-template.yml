@@ -1,4 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
+# ⚠️ DEPLOY MODEL: the live functions, their published versions, and the CloudFront
+# LambdaFunctionAssociations are managed via direct AWS API + DEPLOY.md, NOT by deploying
+# this template. This stack (ECHOCommunity-Images-US-East-1) is DRIFTED (its versions/
+# associations pin :1; production runs later versions). Do NOT `cloudformation deploy` it
+# without reconciling first. Runtimes below are kept current (nodejs22.x) for accuracy.
 
 Transform: AWS::Serverless-2016-10-31
 
@@ -59,7 +64,7 @@ Resources:
     Properties:
       CodeUri: s3://serverless.echocommunity.org/viewer-request-function-12.zip
       Handler: index.handler
-      Runtime: nodejs12.x
+      Runtime: nodejs22.x
       MemorySize: 128
       Timeout: 1
       Role: !GetAtt EdgeLambdaRole.Arn
@@ -77,7 +82,7 @@ Resources:
    Properties:
      CodeUri: s3://serverless.echocommunity.org/origin-response-function-12.zip
      Handler: index.handler
-     Runtime: nodejs12.x
+     Runtime: nodejs22.x
      MemorySize: 512
      Timeout: 5
      Role: !GetAtt EdgeLambdaRole.Arn

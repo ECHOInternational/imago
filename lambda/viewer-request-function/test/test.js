@@ -350,7 +350,7 @@ describe('Handler Function', function(){
 		describe('when accept header is not present', function(){
 			it('should return a jpeg object when a jpeg object is requested', function(done){
 				lambda.handler(clonedeep(base_event), null, function(err, res){
-					expect(res.uri).to.contain('/jpg/');
+					expect(res.uri).to.contain('/jpeg/');
 					done();
 				}, done);
 			});
@@ -370,7 +370,7 @@ describe('Handler Function', function(){
 				base_event_webp = clonedeep(base_event);
 				base_event_webp.Records[0].cf.request.headers['accept'] = [{ "key": "Accept", "value": "image/jpeg"}];
 				lambda.handler(base_event_webp, null, function(err, res){
-					expect(res.uri).to.contain('/jpg/');
+					expect(res.uri).to.contain('/jpeg/');
 					done();
 				}, done);
 			});
@@ -380,7 +380,7 @@ describe('Handler Function', function(){
 		it('should return a uri with default values', function(done){
 			lambda.handler(base_event, null, function(err, res){
 				expect(res.uri).to.be.a('string');
-				expect(res.uri).to.include('/c/600x400/m/jpg/picture.jpg');
+				expect(res.uri).to.include('/c/600x400/m/jpeg/picture.jpg');
 				done();
 			}, done);
 		});
